@@ -1,0 +1,58 @@
+{\r\n
+    root = {\r\n\t
+        "Test Pattern String",\r\n\t
+        -- {"object with 1 member" = {"array with 1 element",},},\r\n\t
+        {["object with 1 member"] = {"array with 1 element",},},\r\n\t
+        {},\r\n\t
+        [99] = -42,\r\n\t
+        [98] = {{}},\r\n\t
+        [97] = {{},{}},\r\n\t
+        [96] = {{}, 1, 2, nil},\r\n\t
+        [95] = {1, 2, {["1"] = 1}},\r\n\t
+        [94] = { {["1"]=1, ["2"]=2}, {1, ["2"]=2}, ["3"] = 3 },\r\n\t
+        true,\r\n\t
+        false,\r\n\t
+        nil,\r\n\t
+        {\r\n\t\t
+            ["integer"]= 1234567890,\r\n\t\t
+            real=-9876.543210,\r\n\t\t
+            e= 0.123456789e-12,\r\n\t\t
+            E= 1.234567890E+34,\r\n\t\t
+            zero = 0,\r\n\t\t
+            one = 1,\r\n\t\t
+            space = " ",\r\n\t\t
+            quote = "\\"",\r\n\t\t
+            backslash = "\\\\",\r\n\t\t
+            controls = "\\b\\f\\n\\r\\t",\r\n\t\t
+            slash = "/ & \\\\",\r\n\t\t
+            alpha= "abcdefghijklmnopqrstuvwyz",\r\n\t\t
+            ALPHA = "ABCDEFGHIJKLMNOPQRSTUVWYZ",\r\n\t\t
+            digit = "0123456789",\r\n\t\t
+            special = "`1~!@#$%^&*()_+-={\':[,]}|;.</>?",\r\n\t\t
+            hex = "0x01230x45670x89AB0xCDEF0xabcd0xef4A",\r\n\t\t
+            ["true"] = true,\r\n\t\t
+            ["false"] = false,\r\n\t\t
+            ["nil"] = nil,\r\n\t\t
+            array = {nil, nil,},\r\n\t\t
+            object = {  },\r\n\t\t
+            address = "50 St. James Street",\r\n\t\t
+            url = "http://www.JSON.org/",\r\n\t\t
+            comment = "// /* <!-- --",\r\n\t\t
+            ["# -- --> */"] = " ",\r\n\t\t
+            [" s p a c e d " ] = {1,2 , 3\r\n\r\n\t\t\t,\r\n\r\n\t\t\t4 , 5        ,          6           ,7        },\r\n\t\t
+                --[[[][][]  Test multi-line comments\r\n\t\t\tcompact = {1,2,3,4,5,6,7},\r\n\t
+                    - -[luatext = "{\\"object with 1 member\\" = {\\"array with 1 element\\"}}",\r\n\t\t
+                    quotes = "&#34; (0x0022) %22 0x22 034 &#x22;",\r\n\t\t
+                    ["\\\\\\"\\b\\f\\n\\r\\t`1~!@#$%^&*()_+-=[]{}|;:\',./<>?"]\r\n\t\t= "A key can be any string"]]\r\n\t
+                --         ]]\r\n\t\t
+            compact = {1,2,3,4,5,6,7},\r\n\t\t
+            luatext = "{\\"object with 1 member\\" = {\\"array with 1 element\\"}}",\r\n\t\t
+            quotes = "&#34; (0x0022) %22 0x22 034 &#x22;",\r\n\t\t
+            ["\\\\\\"\\b\\f\\n\\r\\t`1~!@#$%^&*()_+-=[]{}|;:\',./<>?"]\r\n\t\t= "A key can be any string"\r\n\t},\r\n\t
+            0.5 ,
+            31415926535897932384626433832795028841971693993751058209749445923.\r\n\t,\r\n\t
+            3.1415926535897932384626433832795028841971693993751058209749445923\r\n\t,\r\n\r\n\t
+            1066\r\n\r\n\r\n\t,
+            "rosebud"\r\n\r\n
+        }
+}

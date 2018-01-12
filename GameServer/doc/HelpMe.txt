@@ -1,0 +1,48 @@
+本次作业由客户端程序和服务端程序构成，分别在client和server目录下，
+客户端主程序client.py，服务端主程序server.py
+
+client和server文件夹各有一个DataStructs.py的配置文件，
+运行作业时需要配置这个文件中的以下参数：
+
+client文件夹下的DataStructs.py中的
+服务器ip：HOST，
+服务器端口：PORT，
+客户端传递消息大小：ReadBufferSize
+
+server文件夹下的DataStructs.py中的
+服务器ip：HOST，
+服务器端口：Port,
+服务端传递消息大小：ReadBufferSize,
+服务端最大监听数：MaxConnect，
+游戏抢答时间：GameRushAnswerTime（秒),
+游戏出题时间：Game21timeSpan（秒）
+
+配置好之后运行各自主程序查看作业效果。
+
+服务端主要处理的客户端请求有如下指令操作:
+1. me: 查看玩家信息
+2. modifyInfo: 修改个人资料(coming soon)
+
+3. playersInLobby: 查看大厅里的玩家
+4. listRooms: 查看房间名字
+5. playersInRoom 房间名字: 查看房间内的玩家
+6. when: 查看服务器当前时间
+
+7. chatAll 说话内容: 在大厅发言
+8. chatTo 玩家名字 说话内容: 与玩家私聊
+9. chatRoom 说话内容: 在所在房间发言
+
+10. createRoom 房间名: 创建房间
+11. reNameRoom 房间名 新名字: 房间重命名(coming soon)
+12. enter 数字:按房间号进入房间
+
+13. 21game 表达式: 参与房间的21点游戏
+14. question: 查看房间内的21点题目
+
+15. lobby: 离开当前房间进入大厅
+16. changeAccount: 切换账户,暂离大厅
+17. quit: 离开游戏
+18. clear: 清屏
+
+
+

@@ -1,0 +1,73 @@
+'# -*- coding: gb18030 -*-\n\n
+import json\n
+import os\n
+import sys\n
+import traceback\n
+import compare\n\n
+class outputer(object):\n\t
+    def __init__(self, result_output_file):\n\t\t
+        self.result_output_file = result_output_file\n\n\t
+    def output(self, isPass, hint):\n\t\t
+        f = open(self.result_output_file, \'w\')\n\t\t#
+        if len(hint) > 200:\n\t\t
+        #\thint = hint[-200:]\n\t\t
+        result = {\'pass\':(True if isPass else False), \'hint\':hint}\n\t\t
+        json.dump(result, f)\n\t\t
+        f.close()\n\n\t
+    def outputException(self, t, v, tb):\n\t\t
+        hint = []\n\t\t
+        hint.append(\'Traceback (most recent call last):\\r\\n\')\n\t\t
+        while tb is not None:\n\t\t\t
+            f = tb.tb_frame\n\t\t\t
+            lineno = tb.tb_lineno\n\t\t\t
+            co = f.f_code\n\t\t\t
+            filename = co.co_filename\n\t\t\t
+            filename = os.path.basename(filename)\n\t\t\t
+            hint.append(\'  File "%s", line %d\\r\\n\' % (filename, lineno))\n\t\t\t
+            tb = tb.tb_next\n\t\t
+            hint = \'\'.join(hint)\n\t\t
+            self.output(False, hint)\n\n
+    def main(test_case_file, input_code_file, result_output_file, user_dir):\n\t
+    # input arg check\n\tassert(test_case_file.endswith(\'.lua\'))\n\t
+        assert(os.path.isfile(test_case_file))\n\t
+        assert(input_code_file.endswith(\'PyLuaTblParser.py\'))\n\t
+        assert(os.path.isfile(input_code_file))\n\n\t
+        try:\n\t\tcase_name = os.path.basename(test_case_file)[:-4]\n\t\t
+        sys.path.append(os.path.dirname(test_case_file))\n\t\t
+        exec ("import %s" % case_name)\n\t\t
+        exec ("std_dict = %s.STD_DICT" % case_name)\n\t\t
+        assert(isinstance(std_dict, dict))\n\texcept:\n\t\t
+        assert(False)\n\n\t
+        m_outputer = outputer(result_output_file)\n\n\t
+        try:\n\t\tsys.path.append(os.path.dirname(input_code_file))\n\t\t
+
+        from PyLuaTblParser import PyLuaTblParser\n\t\t
+
+        a1 = PyLuaTblParser()\n\t\t
+        a2 = PyLuaTblParser()\n\t\t
+        a3 = PyLuaTblParser()\n\n\t\t
+        test_file_object = open(test_case_file, \'r\')\n\t\t
+        test_str = test_file_object.read()\n\t\t
+        #m_outputer.output(False, test_str)\n\t\t
+        #return\n\t\ttest_file_object.close()\n\n\t\t
+        a1.load(test_str)\n\t\t
+        d1 = a1.dumpDict()\n\n\t\t
+        file_path = os.path.join(user_dir, \'tmp.lua\')\n\t\t
+        a2.loadDict(d1)\n\t\t
+        a2.dumpLuaTable(file_path)\n\t\t
+        a3.loadLuaTable(file_path)\n\n\t\t
+        d3 = a3.dumpDict()\n\texcept:\n\t\t
+        t, v, tb = sys.exc_info()\n\t\t
+        m_outputer.outputException(t, v, tb)\n\n\t
+        result = compare.equal_dict(std_dict, d3)\n\t
+        assert(isinstance(result, dict))\n\t
+        is_equal = True if result[\'pass\'] else False\n\t
+        hint = result[\'hint\']\n\t
+        if \'trace\' in result:\n\t\t
+            hint = hint + \'\\n\' + result[\'trace\']\n\t
+            m_outputer.output(is_equal, hint)\n\n
+if __name__ == \'__main__\':\n\t
+    if len(sys.argv) < 4:\n\t\t
+    print \'usage : python check_homework.py test_case_file input_code_file result_output_file, user_dir\'\n\t\t
+    sys.exit()\n\t
+    main(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4])\n\n'
