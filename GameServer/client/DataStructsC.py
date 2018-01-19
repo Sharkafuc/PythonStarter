@@ -82,4 +82,8 @@ class Room:
             newPlayer.sendMsg("您已加入"+str(self.id)+"号房间,"+self.name)
         self.players.append(newPlayer)
 
-
+def addMsgLen(s):
+    if len(s) < 1024-4:
+        lenStr = str(len(s))
+        zeroStr = '0000'[:(4-len(lenStr))]
+        return zeroStr+lenStr+s
